@@ -55,6 +55,13 @@ Once installed, you can invoke cybersecurity skills in Claude by describing your
      while working through TryHackMe and HackTheBox labs. The CTF prompts have been
      especially useful for learning binary exploitation basics. -->
 
+## 🔗 Useful Resources
+
+- [TryHackMe](https://tryhackme.com) — Beginner-friendly guided labs
+- [HackTheBox](https://hackthebox.com) — Intermediate/advanced challenges
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/) — Web security reference
+- [MITRE ATT&CK](https://attack.mitre.org) — Adversary tactics and techniques
+
 ## 🤝 Contributing
 
 We welcome contributions! Please see our contribution guidelines:
@@ -73,16 +80,5 @@ git clone https://github.com/your-username/Anthropic-Cybersecurity-Skills.git
 git checkout -b feat/new-skill-name
 
 # Make your changes and commit
-git commit -m "feat: add <skill-name> skill"
-
-# Push and open a Pull Request
-git push origin feat/new-skill-name
+git commit -m "fea
 ```
-
-## 📄 License
-
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
-## 💖 Support
-
-If you find this project
