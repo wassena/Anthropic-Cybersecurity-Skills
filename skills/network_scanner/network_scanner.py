@@ -45,6 +45,8 @@ COMMON_PORTS: Dict[int, str] = {
     8080: "HTTP-Alt",
     8443: "HTTPS-Alt",
     27017: "MongoDB",
+    9200: "Elasticsearch",  # added - commonly exposed in home lab setups
+    5900: "VNC",            # added - useful to detect remote desktop exposure
 }
 
 
@@ -90,7 +92,7 @@ def discover_host(ip: str, timeout: float = 1.0) -> bool:
     return False
 
 
-def scan_host(host: str, ports: List[int], max_workers: int = 100) -> Dict:
+def scan_host(host: str, ports: List[int], max_workers: int = 50) -> Dict:
     """
     Scan a single host for open ports.
 
@@ -108,5 +110,3 @@ def scan_host(host: str, ports: List[int], max_workers: int = 100) -> Dict:
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = {executor.submit(scan_port, host, port): port for port in ports}
         for future in concurrent.futures.as_completed(futures):
-            port, is_open, service = future.result()
-            if is_open:
