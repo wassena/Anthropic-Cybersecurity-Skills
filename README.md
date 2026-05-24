@@ -51,6 +51,10 @@ Once installed, you can invoke cybersecurity skills in Claude by describing your
 "Review this Python script for common security vulnerabilities."
 ```
 
+<!-- Personal note: I'm primarily using this fork to focus on Web Security and CTF Assistance
+     while working through TryHackMe and HackTheBox labs. The CTF prompts have been
+     especially useful for learning binary exploitation basics. -->
+
 ## 🤝 Contributing
 
 We welcome contributions! Please see our contribution guidelines:
@@ -81,8 +85,4 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 ## 💖 Support
 
-If you find this project useful, consider supporting it via [GitHub Sponsors](.github/FUNDING.yml).
-
-## 📬 Contact
-
-For questions or suggestions, please open an [issue](https://github.com/your-username/Anthropic-Cybersecurity-Skills/issues).
+If you find this project
