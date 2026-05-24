@@ -82,7 +82,8 @@ def discover_host(ip: str, timeout: float = 1.0) -> bool:
     Returns:
         True if host appears to be up
     """
-    for probe_port in [80, 443, 22, 445]:
+    # Added port 8080 to probe list since many dev/home lab services run there
+    for probe_port in [80, 443, 22, 445, 8080]:
         _, is_open, _ = scan_port(ip, probe_port, timeout)
         if is_open:
             return True
@@ -109,82 +110,3 @@ def scan_host(host: str, ports: List[int], max_workers: int = 100) -> Dict:
         for future in concurrent.futures.as_completed(futures):
             port, is_open, service = future.result()
             if is_open:
-                open_ports.append({"port": port, "service": service})
-                logger.info(f"  [OPEN] {host}:{port} ({service})")
-
-    elapsed = (datetime.now() - start_time).total_seconds()
-    open_ports.sort(key=lambda x: x["port"])
-
-    return {
-        "host": host,
-        "open_ports": open_ports,
-        "total_scanned": len(ports),
-        "scan_duration_seconds": round(elapsed, 2),
-        "timestamp": start_time.isoformat(),
-    }
-
-
-def parse_port_range(port_range: str) -> List[int]:
-    """
-    Parse a port range string like '1-1024' or '80,443,8080' into a list.
-
-    Args:
-        port_range: Port range string
-
-    Returns:
-        List of port numbers
-    """
-    ports = []
-    for part in port_range.split(","):
-        part = part.strip()
-        if "-" in part:
-            start, end = part.split("-", 1)
-            ports.extend(range(int(start), int(end) + 1))
-        else:
-            ports.append(int(part))
-    return sorted(set(ports))
-
-
-def main():
-    parser = argparse.ArgumentParser(
-        description="Basic network scanner for cybersecurity education"
-    )
-    parser.add_argument("--target", required=True, help="Target IP, hostname, or CIDR range")
-    parser.add_argument(
-        "--ports",
-        default="common",
-        help="Ports to scan: 'common', a range like '1-1024', or list '80,443,8080'",
-    )
-    parser.add_argument("--workers", type=int, default=100, help="Max concurrent threads")
-    args = parser.parse_args()
-
-    if args.ports == "common":
-        ports = list(COMMON_PORTS.keys())
-    else:
-        ports = parse_port_range(args.ports)
-
-    logger.info(f"Starting scan of {args.target} on {len(ports)} ports")
-    logger.info("=" * 60)
-
-    try:
-        network = ipaddress.ip_network(args.target, strict=False)
-        hosts = [str(ip) for ip in network.hosts()]
-    except ValueError:
-        hosts = [args.target]
-
-    results = []
-    for host in hosts:
-        logger.info(f"Scanning host: {host}")
-        result = scan_host(host, ports, max_workers=args.workers)
-        results.append(result)
-        logger.info(
-            f"  Found {len(result['open_ports'])} open ports in {result['scan_duration_seconds']}s"
-        )
-
-    logger.info("=" * 60)
-    logger.info(f"Scan complete. {len(results)} host(s) scanned.")
-    return results
-
-
-if __name__ == "__main__":
-    main()
