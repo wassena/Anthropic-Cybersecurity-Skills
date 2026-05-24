@@ -59,6 +59,7 @@ Once installed, you can invoke cybersecurity skills in Claude by describing your
 
 - [TryHackMe](https://tryhackme.com) — Beginner-friendly guided labs
 - [HackTheBox](https://hackthebox.com) — Intermediate/advanced challenges
+- [PicoCTF](https://picoctf.org) — Great for practicing web and binary exploitation challenges
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/) — Web security reference
 - [MITRE ATT&CK](https://attack.mitre.org) — Adversary tactics and techniques
 
@@ -68,17 +69,4 @@ We welcome contributions! Please see our contribution guidelines:
 
 1. **New Skills** — Use the [New Skill Request](.github/ISSUE_TEMPLATE/new-skill-request.yml) template
 2. **Bug Reports** — Use the [Bug Report](.github/ISSUE_TEMPLATE/bug-report.yml) template
-3. **Improvements** — Use the [Improve Skill](.github/ISSUE_TEMPLATE/improve-skill.md) template
-
-### Contribution Workflow
-
-```bash
-# Fork and clone the repository
-git clone https://github.com/your-username/Anthropic-Cybersecurity-Skills.git
-
-# Create a feature branch
-git checkout -b feat/new-skill-name
-
-# Make your changes and commit
-git commit -m "fea
-```
+3. **Improvements** — Use th
